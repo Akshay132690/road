@@ -1,0 +1,657 @@
+/* ============================================================
+   CHITRAGUPTA — Road Network Intelligence
+   Dark geospatial theme | Space Mono + DM Sans
+   ============================================================ */
+
+:root {
+    --bg: #030712;
+    --bg-card: rgba(255, 255, 255, 0.045);
+    --bg-block: rgba(0, 0, 0, 0.40);
+    --border: rgba(255, 255, 255, 0.08);
+    --green: #22c55e;
+    --green-dim: rgba(34, 197, 94, 0.15);
+    --blue: #38bdf8;
+    --yellow: #facc15;
+    --red: #f87171;
+    --text: #e2e8f0;
+    --text-muted: rgba(226, 232, 240, 0.5);
+    --mono: "Space Mono", monospace;
+    --sans: "DM Sans", sans-serif;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--sans);
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(ellipse at 15% 0%, rgba(56, 189, 248, 0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 90%, rgba(34, 197, 94, 0.07) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ── Layout ─────────────────────────────────────────── */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+
+header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.logo-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 16px;
+    margin-bottom: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.logo-icon {
+    font-size: 16px;
+}
+
+header h1 {
+    font-family: var(--mono);
+    font-size: clamp(24px, 5vw, 42px);
+    font-weight: 700;
+    background: linear-gradient(100deg, var(--blue) 0%, var(--green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.15;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: clamp(14px, 2.5vw, 16px);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── Card ────────────────────────────────────────────── */
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(18px, 4vw, 28px);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Error Banner ────────────────────────────────────── */
+
+.error-banner {
+    background: rgba(248, 113, 113, 0.12);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    color: var(--red);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* ── Upload Area ─────────────────────────────────────── */
+
+.upload-area {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: clamp(24px, 5vw, 44px) 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.upload-area:hover,
+.upload-area.dragging {
+    border-color: var(--green);
+    background: var(--green-dim);
+}
+
+.upload-area.has-file {
+    border-color: rgba(56, 189, 248, 0.5);
+    background: rgba(56, 189, 248, 0.05);
+}
+
+.upload-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.upload-label {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.browse-link {
+    color: var(--green);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+input[type=file] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.file-name {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--blue);
+    min-height: 18px;
+}
+
+/* ── Button ──────────────────────────────────────────── */
+
+.primary-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #1d4ed8, var(--green));
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
+    letter-spacing: 0.03em;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.25);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-style: normal;
+    transition: transform var(--transition);
+}
+
+.primary-btn:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+/* ── Loading Overlay ─────────────────────────────────── */
+
+.loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.88);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loader-box {
+    text-align: center;
+    position: relative;
+}
+
+.radar-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    margin: 0 auto 24px;
+    animation: radarPulse 1.8s ease-out infinite;
+    opacity: 0.8;
+}
+
+.ring2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0.6s;
+    border-color: var(--blue);
+}
+
+.ring3 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 1.2s;
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+@keyframes radarPulse {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+.ring2 {
+    transform: translateX(-50%) scale(0.6);
+}
+
+.ring3 {
+    transform: translateX(-50%) scale(0.6);
+}
+
+@keyframes radarPulse2 {
+    0% {
+        transform: translateX(-50%) scale(0.6);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translateX(-50%) scale(2.2);
+        opacity: 0;
+    }
+}
+
+.ring2,
+.ring3 {
+    animation-name: radarPulse2;
+}
+
+.loader-text {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--green);
+    margin-bottom: 6px;
+}
+
+.loader-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ── Section Header ──────────────────────────────────── */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-family: var(--mono);
+    font-size: clamp(15px, 3vw, 18px);
+    font-weight: 700;
+    color: var(--text);
+}
+
+.badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--bg-block);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* ── Image Grid ──────────────────────────────────────── */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 3vw, 20px);
+}
+
+.block {
+    background: var(--bg-block);
+    border: 1px solid var(--border);
+    padding: clamp(12px, 3vw, 16px);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.block h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.block img {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.block img:hover {
+    transform: scale(1.025);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Analytics ───────────────────────────────────────── */
+
+.analytics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 3vw, 20px);
+}
+
+.metric {
+    background: var(--bg-block);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: clamp(16px, 4vw, 24px);
+    text-align: center;
+}
+
+.metric-value {
+    font-family: var(--mono);
+    font-size: clamp(32px, 7vw, 52px);
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.metric-unit {
+    font-size: 0.5em;
+    opacity: 0.7;
+}
+
+.metric-conn {
+    font-size: clamp(16px, 3vw, 22px);
+    color: var(--blue);
+}
+
+.metric-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── Chips ───────────────────────────────────────────── */
+
+.chips-block {
+    background: var(--bg-block);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: clamp(14px, 3vw, 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.chip {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.chip.good {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: var(--green);
+}
+
+.chip.moderate {
+    background: rgba(250, 204, 21, 0.1);
+    border-color: rgba(250, 204, 21, 0.3);
+    color: var(--yellow);
+}
+
+.chip.poor {
+    background: rgba(248, 113, 113, 0.1);
+    border-color: rgba(248, 113, 113, 0.3);
+    color: var(--red);
+}
+
+/* ── Insight ─────────────────────────────────────────── */
+
+.insight {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.06), rgba(56, 189, 248, 0.06));
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-left: 4px solid var(--green);
+    padding: clamp(14px, 3vw, 20px);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.insight-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* ── Downloads ───────────────────────────────────────── */
+
+.downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    justify-content: center;
+}
+
+.dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-family: var(--mono);
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--bg-block);
+    color: var(--text);
+    transition: all var(--transition);
+}
+
+.dl-btn:hover {
+    border-color: var(--green);
+    color: var(--green);
+    transform: translateY(-2px);
+}
+
+.dl-btn.primary-dl {
+    background: var(--green-dim);
+    border-color: rgba(34, 197, 94, 0.4);
+    color: var(--green);
+}
+
+.dl-btn.primary-dl:hover {
+    background: rgba(34, 197, 94, 0.2);
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+
+footer {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.5;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+}
+
+footer span {
+    color: var(--green);
+    opacity: 1;
+}
+
+/* ── Animation ───────────────────────────────────────── */
+
+.animate {
+    animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .analytics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .insight {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+    .container {
+        padding: 20px 14px 40px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics {
+        grid-template-columns: 1fr;
+    }
+
+    .insight {
+        grid-column: span 1;
+    }
+
+    .chips-block {
+        grid-column: span 1;
+    }
+
+    .metric-value {
+        font-size: 36px;
+    }
+
+    .downloads {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dl-btn {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Large screens */
+@media (min-width: 900px) {
+    .analytics {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .insight {
+        grid-column: span 3;
+    }
+}
